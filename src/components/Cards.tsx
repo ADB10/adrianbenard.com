@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React from 'react';
 import { Project } from '../projects';
 import { Review } from '../reviews';
 import './Animation.css';  // Import CSS for animations
@@ -26,7 +26,7 @@ interface ProjectCardProps {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
-    <div className="p-2 bg-main-white h-fit shadow rounded lg:p-4 lg:pt-3 lg:mb-4">
+    <div className="p-2 fade bg-main-white h-fit shadow rounded lg:p-4 lg:pt-3 lg:mb-4">
       <h4 className="font-bold">{project.name}</h4>
       <div className="my-2 h-[2px] w-full bg-gradient-to-r from-main-color to-white rounded-full"></div>
 
@@ -94,7 +94,7 @@ export interface ServiceCardProps {
 
 export const ServiceCard: React.FC<ServiceCardProps> = ({ service, buttonText, buttonAction }) => {
   return (
-    <div className="bg-main-white text-main-shade-700 text-center rounded-lg shadow flex flex-col justify-between p-2 pt-4 lg:w-1/3 cursor-pointer hover:shadow-2xl transition duration-300 ease-in-out">
+    <div className="bg-main-white text-main-shade-700 text-center rounded-lg shadow flex flex-col justify-between p-2 pt-4 lg:w-1/3 cursor-default hover:shadow-2xl transition duration-300 ease-in-out">
       <div className="header flex flex-col">
         <h5 className="text-main-shade-700 font-bold mb-2">{service.name}</h5>
         <p className="text-main-shade-600 mb-2 text-sm">{service.description}</p>

@@ -109,9 +109,6 @@ p {
     color: #213547;
     background-color: var(--background-color);
   }
-  a:hover {
-    color: var(--main-color);
-  }
 }
 
 @media screen and (min-width: 1024px) {

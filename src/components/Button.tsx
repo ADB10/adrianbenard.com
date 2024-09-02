@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React from 'react';
 
 interface ButtonActionProps {
     onClick: () => void;
@@ -22,7 +22,7 @@ export const ButtonAction: React.FC<ButtonActionProps> = ({ onClick, type, child
 
 export const ButtonLink: React.FC<ButtonLinkProps> = ({ type, link, children }) => {
     return (
-        <div className={`button button-${type} inline-block px-6 py-2 rounded`}>
+        <div className={`button button-${type} inline-block px-6 py-2 rounded ${type === 'primary' && "border-2 border-main-shade-900 hover:text-main-shade-900 hover:bg-main-shade-50 transition duration-300 ease-in-out"}`}>
             <a href={link}>{children}</a>
         </div>
     );

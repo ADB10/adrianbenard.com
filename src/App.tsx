@@ -6,7 +6,7 @@ import Portfolio from './components/Portfolio'
 import Reviews from './components/Reviews'
 import ExternalLinks from './components/ExternalLinks'
 import Navbar from './components/Navbar'
-import { SectionTitle } from './components/Utils'
+import { callCalendly, SectionTitle } from './components/Utils'
 import { freelanceServices, tutoringServices } from './services'
 
 function App() {
@@ -24,10 +24,7 @@ function App() {
         <div className="cta flex flex-col items-center">
           <ButtonAction
             type="primary"
-            onClick={() => {
-              (window as any).Calendly.initPopupWidget({ url: 'https://calendly.com/adrianbenard/free-call' });
-              return false;
-            }}>
+            onClick={callCalendly}>
             Réserver un appel gratuit
           </ButtonAction>
           <ButtonLink type="secondary" link="#projects">
@@ -51,12 +48,12 @@ function App() {
           <p className='mb-4 mt-16 font-weight-200 lg:mt-24 lg:w-[90%]'>
             Je suis Adrian Benard, ingénieur en IA et développeur Python basé à Toulouse. Ma passion pour la programmation m'a conduit à me spécialiser en intelligence artificielle. Fort d'une expérience en IA et développement logiciel, j'ai travaillé sur des projets variés, des modèles avancés de machine learning aux solutions logicielles sur mesure. Mon parcours m'a façonné en résolveur de problèmes, capable d'aborder des défis complexes avec des approches innovantes.
           </p>
-          <ButtonLink type="primary">
+          <ButtonLink type="primary" link="#contact">
             Me contacter
           </ButtonLink>
-          <ButtonLink type="secondary">
+          {/* <ButtonLink type="secondary">
             Voir mon cv
-          </ButtonLink>
+          </ButtonLink> */}
           <div className="grid grid-cols-2 gap-4 my-8">
             <ExperienceCard stat="2" what='ans' subject="Ingénieur Intelligence Artificielle" />
             <ExperienceCard stat="5" what='ans' subject="Développeur Front-End" />
@@ -90,17 +87,17 @@ function App() {
               <h4 className='mb-3 text-main-shade-600 font-semibold uppercase'>Freelance développement</h4>
               <p className='mb-8'>Solutions de développement sur mesure pour vos projets web et IA. Que vous ayez besoin d'un site web moderne, d'une application complexe ou d'une intelligence artificielle, je suis là pour transformer vos idées en réalité.</p>
               <div className="flex flex-col lg:flex-row w-full justify-center gap-2 lg:gap-4">
-                <ServiceCard service={freelanceServices[0]} buttonText="Demander un devis" />
-                <ServiceCard service={freelanceServices[1]} buttonText="Demander un devis" />
+                <ServiceCard service={freelanceServices[0]} buttonText="Demander un devis" buttonAction={callCalendly} />
+                <ServiceCard service={freelanceServices[1]} buttonText="Demander un devis" buttonAction={callCalendly} />
               </div>
             </div>
             <div>
               <h4 className='mb-3 text-main-shade-600 font-semibold uppercase'>Cours particuliers</h4>
               <p className='mb-8'>Apprenez à coder ou perfectionnez vos compétences en programmation avec des cours adaptés à tous les niveaux. De l'introduction à la programmation aux techniques avancées en intelligence artificielle, développez vos compétences avec un mentor expérimenté.</p>
               <div className="flex flex-col lg:flex-row w-full justify-center gap-2 lg:gap-4">
-                <ServiceCard service={tutoringServices[0]} buttonText="Réserver mon cours" />
-                <ServiceCard service={tutoringServices[1]} buttonText="Réserver mon cours" />
-                <ServiceCard service={tutoringServices[2]} buttonText="Réserver mon cours" />
+                <ServiceCard service={tutoringServices[0]} buttonText="Prendre rendez-vous" buttonAction={callCalendly} />
+                <ServiceCard service={tutoringServices[1]} buttonText="Prendre rendez-vous" buttonAction={callCalendly} />
+                <ServiceCard service={tutoringServices[2]} buttonText="Prendre rendez-vous" buttonAction={callCalendly} />
               </div>
             </div>
           </div>

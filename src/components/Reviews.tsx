@@ -5,12 +5,12 @@ import { ReviewCard } from './Cards';
 import { EyeIcon } from '@heroicons/react/24/solid';
 
 // Utility function to shuffle an array
-function shuffleArray(array: Review[]): Review[] {
-    return array
-        .map(value => ({ value, sort: Math.random() }))
-        .sort((a, b) => a.sort - b.sort)
-        .map(({ value }) => value);
-}
+// function shuffleArray(array: Review[]): Review[] {
+//     return array
+//         .map(value => ({ value, sort: Math.random() }))
+//         .sort((a, b) => a.sort - b.sort)
+//         .map(({ value }) => value);
+// }
 
 const Reviews: React.FC = () => {
     const [visibleReviewsCount, setVisibleReviewsCount] = useState<number>(10);

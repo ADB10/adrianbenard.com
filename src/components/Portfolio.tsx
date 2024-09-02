@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Project, PROJECTS } from '../projects';
 import { ProjectCard } from './Cards';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+// import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './Animation.css';  // Import the CSS for animations
 import { EyeIcon } from '@heroicons/react/24/solid'
 
@@ -9,7 +9,7 @@ const sortedProjects = [...PROJECTS].sort((a, b) => b.year - a.year);
 
 const allCategories = Array.from(new Set(sortedProjects.flatMap(project => project.categories)));
 
-function calculateNumberOfLines(text: string, fontSize: string, containerWidth: string) {
+function calculateNumberOfLines(text: string, containerWidth: string) {
     // Create a temporary hidden div element
     const tempDiv = document.createElement('div');
 
@@ -29,13 +29,12 @@ function calculateNumberOfLines(text: string, fontSize: string, containerWidth: 
 
     // Calculate the number of lines
     const totalHeight = tempDiv.clientHeight;
-    
+
     document.body.removeChild(tempDiv);
-    
+
     return totalHeight;
 }
 
-const fontSize = '14'; // in pixels
 const containerWidth = '464'; // in pixels
 
 const Portfolio: React.FC = () => {
@@ -51,7 +50,7 @@ const Portfolio: React.FC = () => {
 
     const handleCategoryClick = (category: string) => {
         setSelectedCategory(prevCategory => (prevCategory === category ? null : category));
-        setVisibleProjectsCount(4); // Reset the visible projects when a new category is selected
+        setVisibleProjectsCount(5);
     };
 
     const handleSeeMoreClick = () => {
@@ -85,36 +84,28 @@ const Portfolio: React.FC = () => {
 
         projects.forEach(project => {
             if (column1_length <= column2_length && column1.length <= column2.length) {
-                column1.push(project);                
-                column1_length += calculateNumberOfLines(project.description, fontSize, containerWidth) + 1; // +1 for the full card
+                column1.push(project);
+                column1_length += calculateNumberOfLines(project.description, containerWidth) + 99; // +99 for the full card
             } else {
                 column2.push(project);
-                column2_length += calculateNumberOfLines(project.description, fontSize, containerWidth) + 1;
-            }            
+                column2_length += calculateNumberOfLines(project.description, containerWidth) + 99;
+            }
         });
 
         return (
             <div className="flex gap-2 lg:gap-4">
                 <div className="w-1/2">
-                    <TransitionGroup>
-                        {column1.map(project => (
-                            <CSSTransition key={project.name} timeout={300} classNames="fade">
-                                <ProjectCard project={project} />
-                            </CSSTransition>
-                        ))}
-                    </TransitionGroup>
+                    {column1.map(project => (
+                        <ProjectCard key={project.name} project={project} />
+                    ))}
                     {
                         column1_length <= column2_length && displayOneMoreProject()
                     }
                 </div>
                 <div className="w-1/2">
-                    <TransitionGroup>
-                        {column2.map(project => (
-                            <CSSTransition key={project.name} timeout={300} classNames="fade">
-                                <ProjectCard project={project} />
-                            </CSSTransition>
-                        ))}
-                    </TransitionGroup>
+                    {column2.map(project => (
+                        <ProjectCard key={project.name} project={project} />
+                    ))}
                     {
                         column1_length > column2_length && displayOneMoreProject()
                     }
@@ -124,14 +115,10 @@ const Portfolio: React.FC = () => {
     };
 
     const displayProjectsPhone = (projects: Project[]) => (
-        <div>
-            <TransitionGroup className="flex flex-col gap-2">
-                {projects.map(project => (
-                    <CSSTransition key={project.name} timeout={300} classNames="fade">
-                        <ProjectCard project={project} />
-                    </CSSTransition>
-                ))}
-            </TransitionGroup>
+        <div className="flex flex-col gap-2">
+            {projects.map(project => (
+                <ProjectCard project={project} />
+            ))}
             <div className='mt-2'>
                 {displayOneMoreProject()}
             </div>
