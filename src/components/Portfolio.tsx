@@ -9,9 +9,38 @@ const sortedProjects = [...PROJECTS].sort((a, b) => b.year - a.year);
 
 const allCategories = Array.from(new Set(sortedProjects.flatMap(project => project.categories)));
 
+function calculateNumberOfLines(text: string, fontSize: string, containerWidth: string) {
+    // Create a temporary hidden div element
+    const tempDiv = document.createElement('div');
+
+    // Set the text content
+    tempDiv.textContent = text;
+
+    // Apply the necessary styles to the div
+    tempDiv.style.fontSize = '0.875rem';
+    tempDiv.style.width = containerWidth + 'px';
+    tempDiv.style.lineHeight = '1.25rem';  // Use default line height
+    tempDiv.style.position = 'absolute';  // Position it out of view
+    tempDiv.style.visibility = 'hidden';  // Make it invisible
+    tempDiv.style.whiteSpace = 'normal';  // Allow text wrapping
+
+    // Append the div to the document body
+    document.body.appendChild(tempDiv);
+
+    // Calculate the number of lines
+    const totalHeight = tempDiv.clientHeight;
+    
+    document.body.removeChild(tempDiv);
+    
+    return totalHeight;
+}
+
+const fontSize = '14'; // in pixels
+const containerWidth = '464'; // in pixels
+
 const Portfolio: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-    const [visibleProjectsCount, setVisibleProjectsCount] = useState<number>(4);
+    const [visibleProjectsCount, setVisibleProjectsCount] = useState<number>(5);
     const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
     useEffect(() => {
@@ -55,13 +84,13 @@ const Portfolio: React.FC = () => {
         let column2_length: number = 0;
 
         projects.forEach(project => {
-            if (column2_length <= column1_length) {
-                column2.push(project);
-                column2_length += project.description.length + project.name.length;
+            if (column1_length <= column2_length && column1.length <= column2.length) {
+                column1.push(project);                
+                column1_length += calculateNumberOfLines(project.description, fontSize, containerWidth) + 1; // +1 for the full card
             } else {
-                column1.push(project);
-                column1_length += project.description.length + project.name.length;
-            }
+                column2.push(project);
+                column2_length += calculateNumberOfLines(project.description, fontSize, containerWidth) + 1;
+            }            
         });
 
         return (
@@ -104,7 +133,7 @@ const Portfolio: React.FC = () => {
                 ))}
             </TransitionGroup>
             <div className='mt-2'>
-            { displayOneMoreProject() }
+                {displayOneMoreProject()}
             </div>
         </div>
 
@@ -116,7 +145,7 @@ const Portfolio: React.FC = () => {
                 <span className="font-light uppercase text-sm text-main-shade-400">Filter</span>
                 <div className="mb-4 flex flex-wrap gap-1">
                     <button
-                        className={`px-3 py-1 rounded-full ${selectedCategory === null ? 'bg-main-color text-white' : 'bg-main-shade-900 text-white'}`}
+                        className={`px-3 py-1 text-sm rounded-full ${selectedCategory === null ? 'bg-main-color text-white' : 'bg-main-shade-900 text-white'}`}
                         onClick={() => setSelectedCategory(null)}
                     >
                         All
@@ -124,7 +153,7 @@ const Portfolio: React.FC = () => {
                     {allCategories.map(category => (
                         <button
                             key={category}
-                            className={`px-3 py-1 rounded-full ${selectedCategory === category ? 'bg-main-color text-white' : 'bg-main-shade-900 text-white'}`}
+                            className={`px-3 py-1 text-sm rounded-full ${selectedCategory === category ? 'bg-main-color text-white' : 'bg-main-shade-900 text-white'}`}
                             onClick={() => handleCategoryClick(category)}
                         >
                             {category}

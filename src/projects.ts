@@ -6,9 +6,19 @@ export interface Project {
   year: number;
   description: string;
   categories: string[];
+  externalLink?: string;
 }
 
 export const PROJECTS = [
+  {
+    "name": "adrianbenard.com",
+    "languages": ["ReactJS", "TailwindCSS"],
+    "type": "Personal",
+    "year": 2024,
+    "description": "Created a personal website using ReactJS and TailwindCSS.",
+    "categories": ["Web"],
+    "externalLink": "https://adrianbenard.com/",
+  },
   {
     "name": "Raid 5 / 10 / 50",
     "languages": ["Java", "C"],
@@ -47,7 +57,8 @@ export const PROJECTS = [
     "type": "Freelance",
     "year": 2020,
     "description": "Integrated a showcase site using DIVI and WordPress, allowing the client to add and modify content easily.",
-    "categories": ["Web"]
+    "categories": ["Web"],
+    "externalLink": "https://a-carre.fr/",
   },
   {
     "name": "romain-rolland.fr",
@@ -103,7 +114,8 @@ export const PROJECTS = [
     "type": "Freelance",
     "year": 2022,
     "description": "Integrated a showcase site for training services using PHP and WordPress, enabling clients to manage and modify training content and reviews.",
-    "categories": ["Web"]
+    "categories": ["Web"],
+    "externalLink": "https://scoache.com/",
   },
   {
     "name": "Signal Processing Engineer",

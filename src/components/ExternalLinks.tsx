@@ -3,26 +3,25 @@
 import React from 'react';
 
 interface LinkItemProps {
-  name: string;
-  href_: string;
-  isMailto?: boolean;
+  label: string;
+  linkName: string;
+  href_?: string;
   isExternal?: boolean;
   onClick?: () => void;
 }
 
-const LinkItem: React.FC<LinkItemProps> = ({ name, href_, isMailto, isExternal, onClick }) => {
+const LinkItem: React.FC<LinkItemProps> = ({ label, linkName, href_, isExternal, onClick }) => {
   return (
-    <div className="mb-3">
-      <h4 className="uppercase text-main-shade-50">{name}</h4>
+    <div className="mb-3 lg:text-lg">
+      <h4 className="uppercase text-main-shade-50">{label}</h4>
       <a
         className="text-main-white font-semibold"
         href={href_}
         onClick={onClick}
         target={isExternal ? '_blank' : '_self'}
         rel={isExternal ? 'noopener noreferrer' : undefined}
-        {...(isMailto ? { href_: `mailto:${href_}` } : {})}
       >
-        {href_}
+        {linkName}
       </a>
     </div>
   );
@@ -32,30 +31,32 @@ const ExternalLinks: React.FC = () => {
   return (
     <div className="">
       <LinkItem
-        name="Book a free call"
-        href_="https://calendly.com/adrianbenard/free-call"
+        label="Book a free call"
+        linkName="calendly.com/adrianbenard/free-call"
         onClick={() => {
           (window as any).Calendly.initPopupWidget({ url: 'https://calendly.com/adrianbenard/free-call' });
           return false;
         }}
       />
       <LinkItem
-        name="Phone"
-        href_="+330781021090"
-        isMailto={false}
+        label="Phone"
+        linkName="+33 07 81 02 10 90"
+        href_="tel:+330781021090"
       />
       <LinkItem
-        name="Email"
-        href_="contact@adrianbenard.com"
-        isMailto={true}
+        label="Email"
+        linkName="contact@adrianbenard.com"
+        href_="mailto:contact@adrianbenard.com"
       />
       <LinkItem
-        name="Linkedin"
+        label="Linkedin"
+        linkName="linkedin.com/in/adrianbenard/"
         href_="https://www.linkedin.com/in/adrianbenard/"
         isExternal={true}
       />
       <LinkItem
-        name="Github"
+        label="Github"
+        linkName="github.com/ADB10"
         href_="https://github.com/ADB10"
         isExternal={true}
       />

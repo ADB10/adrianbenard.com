@@ -1,19 +1,20 @@
 import profilPic from './assets/profil.png'
-import { ButtonLink } from './components/Button'
+import { ButtonAction, ButtonLink } from './components/Button'
 import './App.css'
-import { ExperienceCard } from './components/Cards'
+import { ExperienceCard, ServiceCard } from './components/Cards'
 import Portfolio from './components/Portfolio'
 import Reviews from './components/Reviews'
 import ExternalLinks from './components/ExternalLinks'
 import Navbar from './components/Navbar'
 import { SectionTitle } from './components/Utils'
+import { freelanceServices, tutoringServices } from './services'
 
 function App() {
 
   return (
     <>
       <Navbar />
-      <section id="hero" className='p-2 pt-32 container lg:mx-auto'>
+      <section id="hero" className='p-2 pt-32 container lg:mx-auto lg:pt-48'>
         <h1 className='title text-3xl lg:text-center mb-4 lg:text-5xl lg:leading-normal'>
           Transformez <span className="text-highlight">votre vision</span> en une solution digitale à <span className="text-highlight">haut impact</span>
         </h1>
@@ -21,18 +22,23 @@ function App() {
           Avec plus de 5 ans d'expérience en IA et développement logiciel, je transforme des idées innovantes en produits numériques. Que ce soit pour développer des modèles de machine learning, créer des applications sur mesure ou des solutions web évolutives, je propose des services de haute qualité pour concrétiser votre projet.
         </p>
         <div className="cta flex flex-col items-center">
-          <ButtonLink type="primary">
+          <ButtonAction
+            type="primary"
+            onClick={() => {
+              (window as any).Calendly.initPopupWidget({ url: 'https://calendly.com/adrianbenard/free-call' });
+              return false;
+            }}>
             Réserver un appel gratuit
-          </ButtonLink>
-          <ButtonLink type="secondary">
+          </ButtonAction>
+          <ButtonLink type="secondary" link="#projects">
             Découvrir mes projets
           </ButtonLink>
         </div>
       </section>
 
-      <section id="about" className='m-2 mt-32 bg-white rounded shadow relative container w-fit lg:mx-auto'>
+      <section id="about" className='m-2 mt-32 bg-main-white rounded shadow relative container w-fit lg:mx-auto lg:mt-48'>
         <div className="img-bg flex justify-center items-center rounded-t lg:justify-start lg:px-24">
-          <h2 className='background-color text-xl lg:text-3xl'>
+          <h2 className='text-main-white text-xl lg:text-3xl'>
             En savoir plus sur mon parcours
           </h2>
         </div>
@@ -61,7 +67,7 @@ function App() {
         </div>
       </section>
 
-      <section id="projects" className='p-2 mt-32 mb-16 container lg:mx-auto'>
+      <section id="projects" className='p-2 mt-32 mb-16 container lg:mx-auto lg:mb-32 lg:mt-64'>
         <SectionTitle
           title={<>Un aperçu de <span className="text-highlight">mes projets</span></>}
           subtitle="Explorez mon portfolio et découvrez les projets innovants où la créativité rencontre l'expertise technique."
@@ -71,17 +77,37 @@ function App() {
         </div>
       </section>
 
-      <section id="services" className='bg-main-shade-100 py-16'>
+      <section id="services" className='bg-main-shade-100 py-16 lg:py-32'>
         <div className="container p-2 lg:mx-auto">
           <SectionTitle
             title={<><span className="text-highlight">Les services</span> que je propose</>}
             subtitle="Offrant une gamme de services, du développement d'IA et de solutions logicielles au tutorat personnalisé en programmation. Travaillons ensemble pour donner vie à votre projet ou pour améliorer vos compétences dans le monde de la technologie."
             center={true}
           />
+          <div className="text-center  text-sm">
+
+            <div className='mt-8 mb-16'>
+              <h4 className='mb-3 text-main-shade-600 font-semibold uppercase'>Freelance développement</h4>
+              <p className='mb-8'>Solutions de développement sur mesure pour vos projets web et IA. Que vous ayez besoin d'un site web moderne, d'une application complexe ou d'une intelligence artificielle, je suis là pour transformer vos idées en réalité.</p>
+              <div className="flex flex-col lg:flex-row w-full justify-center gap-2 lg:gap-4">
+                <ServiceCard service={freelanceServices[0]} buttonText="Demander un devis" />
+                <ServiceCard service={freelanceServices[1]} buttonText="Demander un devis" />
+              </div>
+            </div>
+            <div>
+              <h4 className='mb-3 text-main-shade-600 font-semibold uppercase'>Cours particuliers</h4>
+              <p className='mb-8'>Apprenez à coder ou perfectionnez vos compétences en programmation avec des cours adaptés à tous les niveaux. De l'introduction à la programmation aux techniques avancées en intelligence artificielle, développez vos compétences avec un mentor expérimenté.</p>
+              <div className="flex flex-col lg:flex-row w-full justify-center gap-2 lg:gap-4">
+                <ServiceCard service={tutoringServices[0]} buttonText="Réserver mon cours" />
+                <ServiceCard service={tutoringServices[1]} buttonText="Réserver mon cours" />
+                <ServiceCard service={tutoringServices[2]} buttonText="Réserver mon cours" />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id='reviews' className='mt-16 mb-16 p-2 container lg:mx-auto'>
+      <section id='reviews' className='mt-16 mb-16 p-2 container lg:mx-auto lg:my-32'>
         <SectionTitle
           title={<><span className="text-highlight">Les avis</span> de mes clients et élèves</>}
           subtitle="Offrant une gamme de services, du développement d'IA et de solutions logicielles au tutorat personnalisé en programmation. Travaillons ensemble pour donner vie à votre projet ou pour améliorer vos compétences dans le monde de la technologie."
@@ -91,7 +117,7 @@ function App() {
         </div>
       </section>
 
-      <footer id="contact" className='p-2 pt-16 bg-main-black'>
+      <footer id="contact" className='p-2 pt-16 bg-main-black lg:pt-32'>
         <div className="lg:w-fit lg:mx-auto">
           <SectionTitle
             title={<>Les liens pour <span className="text-highlight">me contacter</span></>}

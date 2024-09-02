@@ -23,7 +23,7 @@ const Reviews: React.FC = () => {
     }, []);
 
     // Sort reviews by star rating in descending order
-    const shuffledReviews = shuffleArray(REVIEWS);
+    // const shuffledReviews = shuffleArray(REVIEWS);
 
     // Get the currently visible reviews based on the count
     const visibleReviews = REVIEWS.slice(0, visibleReviewsCount);
@@ -107,7 +107,7 @@ const Reviews: React.FC = () => {
 
     const displayProjectsPhone = (reviews: Review[]) => {
         return (
-            <div>
+            <div className='flex flex-col gap-2'>
                 {reviews.map((review, index) => (
                     <ReviewCard key={index} review={review} />
                 ))}

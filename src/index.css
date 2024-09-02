@@ -42,9 +42,10 @@ html {
   background-color: var(--background-color);
 }
 
-
-
-
+section {
+  scroll-margin-top: 80px;
+  scroll-padding-top: 80px;
+}
 
 .text-highlight {
   color: var(--main-color);

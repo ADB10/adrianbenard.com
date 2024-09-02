@@ -1,5 +1,5 @@
 #about > .img-bg {
-  background-image: url(./assets/about-bg.jpeg);
+  background-image: linear-gradient(to top, var(--main-white), rgba(0, 0, 0, 0) 60%), url(./assets/about-bg.jpeg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 150%;
@@ -26,6 +26,6 @@
   #about > .profil-pic {
     width: 180px;
     height: 180px;
-    top: 255px;
+    top: 260px;
   }
 }
