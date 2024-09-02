@@ -1,0 +1,31 @@
+#about > .img-bg {
+  background-image: url(./assets/about-bg.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 150%;
+  height: 200px;
+  width: 100%;
+}
+
+#about > .profil-pic {
+  width: 120px;
+  height: 120px;
+  background-color: var(--main-color);
+  border-color: var(--main-white);
+  position: absolute;
+  top: 140px;
+}
+
+@media screen and (min-width: 1024px) {
+  #about > .img-bg {
+    height: 350px;
+  background-size: 100%;
+
+  }
+
+  #about > .profil-pic {
+    width: 180px;
+    height: 180px;
+    top: 255px;
+  }
+}
