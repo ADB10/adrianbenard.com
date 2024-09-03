@@ -104,13 +104,6 @@ p {
   color: var(--main-black);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: var(--background-color);
-  }
-}
-
 @media screen and (min-width: 1024px) {
   .container {
     /* Overwrite default max-width so it's always 1024px */

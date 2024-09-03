@@ -27,7 +27,7 @@ interface ProjectCardProps {
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     <div className="p-2 fade bg-main-white h-fit shadow rounded lg:p-4 lg:pt-3 lg:mb-4">
-      <h4 className="font-bold">{project.name}</h4>
+      <h4 className="font-bold text-main-black">{project.name}</h4>
       <div className="my-2 h-[2px] w-full bg-gradient-to-r from-main-color to-white rounded-full"></div>
 
       <p className='text-sm'><span className="text-sm text-main-shade-400">{project.year}</span> | {project.description}</p>
@@ -77,7 +77,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
   return (
     <div className="rounded-xl border border-main-shade-200 fade p-2 bg-main-white hover:border-main-color h-fit lg:p-4">
       <div className="header flex justify-between mb-2">
-        <h4 className="font-bold">{review.name}</h4>
+        <h4 className="font-bold text-main-black">{review.name}</h4>
         <div className="text-main-color">{renderStars()}</div>
       </div>
       <p className='text-sm'>{review.review}</p>
